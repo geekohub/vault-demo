@@ -1,0 +1,9 @@
+defaultNamespace: external-secrets
+
+helm:
+  repo: https://charts.external-secrets.io
+  chart: external-secrets
+  releaseName: external-secrets
+  version: 0.9.11
+  values:
+    installCRDs: true
