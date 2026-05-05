@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vault-config
+  namespace: vault
+spec:
+  template:
+    spec:
+      containers:
+      - name: config
+        image: hashicorp/vault
+        env:
+        - name: VAULT_ADDR
+          value: http://vault.vault:8200
+        command:
+        - /bin/sh
+        - -c
+        - |
+          vault secrets enable -path=kv kv-v2
+
+          vault kv put kv/app password=supersecret
+
+      restartPolicy: OnFailure
