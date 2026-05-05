@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vault-init
+  namespace: vault
+spec:
+  template:
+    spec:
+      containers:
+      - name: init
+        image: hashicorp/vault
+        command:
+        - /bin/sh
+        - -c
+        - |
+          vault operator init -key-shares=1 -key-threshold=1 -format=json > /tmp/init.json
+      restartPolicy: OnFailure
