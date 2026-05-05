@@ -1,0 +1,4 @@
+dependsOn:
+  - name: external-secrets
+
+defaultNamespace: vault-demo
